@@ -1,0 +1,16 @@
+{
+  "name": "taskfy",
+  "type": "module",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "bun --hot apps/backend/index.ts"
+  },
+  "workspaces": ["packages/*", "apps/*"],
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "5.8.2"
+  }
+}
