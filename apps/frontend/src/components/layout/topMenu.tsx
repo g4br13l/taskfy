@@ -12,7 +12,7 @@ export function TopMenu() {
   return(
 
     <div className="sticky top-0 z-50 f-col-center h-16 bg-sidebar">
-      <div className="f-row max-w-5xl h-16 bg-sidebar">
+      <div className="main-container f-row h-16 bg-sidebar">
 
         <Link to="/" className="content-center w-32">
           <img
@@ -27,7 +27,7 @@ export function TopMenu() {
             <Link to="/" className="w-full h-full hover:cursor-pointer px-5">
               Dashboard
             </Link>
-            <Link to="/tasks" className="w-full h-full hover:cursor-pointer px-5">
+            <Link to="/groups" params='1' className="w-full h-full hover:cursor-pointer px-5">
               Tasks
             </Link>
           </div>

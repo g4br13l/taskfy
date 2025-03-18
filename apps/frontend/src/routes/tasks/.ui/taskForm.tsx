@@ -2,7 +2,7 @@ import { Label } from '@/components/base/label'
 import { Input } from '@/components/base/input'
 import { Button } from '@/components/base/button'
 import { ChangeEvent, useRef } from 'react'
-import { taskStore } from '@/state/taskStore'
+import { taskStore } from '@/routes/tasks/.module/taskStore'
 
 
 
@@ -15,8 +15,9 @@ export function TaskForm() {
 
 
   function handleAddTaskClick() {
-    const inputVal = inputRef.current?.value
-    if (inputVal) taskStore().add({ name: inputVal })
+    console.log('handleAddTaskClick')
+    /* const inputVal = inputRef.current?.value */
+    /* if (inputVal) taskStore().add({ name: inputVal }) */
   }
 
   function handleSearchTask(event: ChangeEvent<HTMLInputElement>) {

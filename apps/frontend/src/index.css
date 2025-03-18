@@ -126,6 +126,10 @@
     @apply scroll-smooth overflow-auto scroll-p-20
   }
 
+  #root {
+    @apply h-svh
+  }
+
   body {
     @apply bg-background text-foreground
   }
@@ -135,7 +139,7 @@
   }
 
   section {
-    @apply flex flex-col gap-6 self-stretch
+    @apply flex flex-col flex-1 gap-6 h-full self-stretch
   }
 
   h1 {
@@ -212,12 +216,20 @@
     @apply items-center justify-center
   }
 
-  .box {
-    @apply flex flex-col bg-sidebar self-stretch min-w-fit min-h-fit gap-6 rounded-md p-4
+  .side-box {
+    @apply flex flex-col w-6/12 min-w-[250px] bg-sidebar gap-6 rounded-md p-4
+  }
+
+  .main-box {
+    @apply flex flex-col bg-sidebar gap-6 rounded-md p-4
   }
 
   .h-section {
     @apply flex flex-row w-full h-fit place-content-between items-center
+  }
+
+  .main-container {
+    @apply flex flex-1 items-center max-w-7xl gap-4 px-4
   }
 
 }

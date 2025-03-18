@@ -10,6 +10,8 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
 
+  console.log('(\'/\') rendered')
+
   return(
     <section>
 

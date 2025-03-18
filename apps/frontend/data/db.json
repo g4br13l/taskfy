@@ -1,0 +1,102 @@
+{
+
+  "category": [
+    {
+      "id": 1,
+      "label": "Push notifications"
+    },
+    {
+      "id": 2,
+      "label": "Calendar"
+    },
+    {
+      "id": 3,
+      "label": "Cron job"
+    }
+  ],
+
+  "groups": [
+    {
+      "id": 1,
+      "enabled": true,
+      "title": "Group A title",
+      "category": {
+        "id": 1,
+        "label": "Push notifications"
+      }
+    },
+    {
+      "id": 2,
+      "enabled": true,
+      "title": "Group B title",
+      "category": {
+        "id": 1,
+        "label": "Push notifications"
+      }
+    },
+    {
+      "id": 3,
+      "enabled": false,
+      "title": "Group C title",
+      "category": {
+        "id": 1,
+        "label": "Push notifications"
+      }
+    },
+    {
+      "id": 4,
+      "enabled": true,
+      "title": "Group D title",
+      "category": {
+        "id": 2,
+        "label": "Calendar"
+      }
+    },
+    {
+      "id": 5,
+      "enabled": true,
+      "title": "Group E title",
+      "category": {
+        "id": 2,
+        "label": "Calendar"
+      }
+    }
+  ],
+
+  "tasks": [
+    {
+      "id": 1,
+      "enabled": true,
+      "title": "Task A long title",
+      "description": "Task A Description",
+      "frequency": "daily",
+      "startDate": "2025-04-1",
+      "time": "11:30 AM",
+      "endDate": "2025-04-20",
+      "groupId": 1
+    },
+    {
+      "id": 2,
+      "enabled": true,
+      "title": "Task B long title",
+      "description": "Task B Description",
+      "frequency": "one-time",
+      "startDate": "2025-04-1",
+      "time": "11:30 AM",
+      "endDate": "-",
+      "groupId": 1
+    },
+    {
+      "id": 3,
+      "enabled": true,
+      "title": "Task C long title",
+      "description": "Task C Description",
+      "frequency": "weekly",
+      "startDate": "2025-04-1",
+      "time": "11:30 AM",
+      "endDate": "2025-04-20",
+      "groupId": 2
+    }
+  ]
+
+}

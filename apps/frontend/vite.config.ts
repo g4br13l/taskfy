@@ -9,7 +9,10 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    TanStackRouterVite()
+    TanStackRouterVite({
+      target: 'react',
+      routeFileIgnorePrefix: '.'
+    })
   ],
   resolve: {
     alias: {

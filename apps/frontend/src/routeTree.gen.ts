@@ -8,28 +8,44 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-
-// Create Virtual Routes
-
-const TasksLazyImport = createFileRoute('/tasks')()
+import { Route as TasksIndexImport } from './routes/tasks/index'
+import { Route as GroupsIndexImport } from './routes/groups/index'
+import { Route as TasksTaskIdImport } from './routes/tasks/$taskId'
+import { Route as GroupsGroupIdImport } from './routes/groups/$groupId'
 
 // Create/Update Routes
-
-const TasksLazyRoute = TasksLazyImport.update({
-  id: '/tasks',
-  path: '/tasks',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/tasks.lazy').then((d) => d.Route))
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TasksIndexRoute = TasksIndexImport.update({
+  id: '/tasks/',
+  path: '/tasks/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GroupsIndexRoute = GroupsIndexImport.update({
+  id: '/groups/',
+  path: '/groups/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TasksTaskIdRoute = TasksTaskIdImport.update({
+  id: '/tasks/$taskId',
+  path: '/tasks/$taskId',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GroupsGroupIdRoute = GroupsGroupIdImport.update({
+  id: '/groups/$groupId',
+  path: '/groups/$groupId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -44,11 +60,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/tasks': {
-      id: '/tasks'
+    '/groups/$groupId': {
+      id: '/groups/$groupId'
+      path: '/groups/$groupId'
+      fullPath: '/groups/$groupId'
+      preLoaderRoute: typeof GroupsGroupIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/tasks/$taskId': {
+      id: '/tasks/$taskId'
+      path: '/tasks/$taskId'
+      fullPath: '/tasks/$taskId'
+      preLoaderRoute: typeof TasksTaskIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/groups/': {
+      id: '/groups/'
+      path: '/groups'
+      fullPath: '/groups'
+      preLoaderRoute: typeof GroupsIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/tasks/': {
+      id: '/tasks/'
       path: '/tasks'
       fullPath: '/tasks'
-      preLoaderRoute: typeof TasksLazyImport
+      preLoaderRoute: typeof TasksIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -58,37 +95,58 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/tasks': typeof TasksLazyRoute
+  '/groups/$groupId': typeof GroupsGroupIdRoute
+  '/tasks/$taskId': typeof TasksTaskIdRoute
+  '/groups': typeof GroupsIndexRoute
+  '/tasks': typeof TasksIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/tasks': typeof TasksLazyRoute
+  '/groups/$groupId': typeof GroupsGroupIdRoute
+  '/tasks/$taskId': typeof TasksTaskIdRoute
+  '/groups': typeof GroupsIndexRoute
+  '/tasks': typeof TasksIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/tasks': typeof TasksLazyRoute
+  '/groups/$groupId': typeof GroupsGroupIdRoute
+  '/tasks/$taskId': typeof TasksTaskIdRoute
+  '/groups/': typeof GroupsIndexRoute
+  '/tasks/': typeof TasksIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tasks'
+  fullPaths: '/' | '/groups/$groupId' | '/tasks/$taskId' | '/groups' | '/tasks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tasks'
-  id: '__root__' | '/' | '/tasks'
+  to: '/' | '/groups/$groupId' | '/tasks/$taskId' | '/groups' | '/tasks'
+  id:
+    | '__root__'
+    | '/'
+    | '/groups/$groupId'
+    | '/tasks/$taskId'
+    | '/groups/'
+    | '/tasks/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TasksLazyRoute: typeof TasksLazyRoute
+  GroupsGroupIdRoute: typeof GroupsGroupIdRoute
+  TasksTaskIdRoute: typeof TasksTaskIdRoute
+  GroupsIndexRoute: typeof GroupsIndexRoute
+  TasksIndexRoute: typeof TasksIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TasksLazyRoute: TasksLazyRoute,
+  GroupsGroupIdRoute: GroupsGroupIdRoute,
+  TasksTaskIdRoute: TasksTaskIdRoute,
+  GroupsIndexRoute: GroupsIndexRoute,
+  TasksIndexRoute: TasksIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -102,14 +160,26 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/tasks"
+        "/groups/$groupId",
+        "/tasks/$taskId",
+        "/groups/",
+        "/tasks/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/tasks": {
-      "filePath": "tasks.lazy.tsx"
+    "/groups/$groupId": {
+      "filePath": "groups/$groupId.tsx"
+    },
+    "/tasks/$taskId": {
+      "filePath": "tasks/$taskId.tsx"
+    },
+    "/groups/": {
+      "filePath": "groups/index.tsx"
+    },
+    "/tasks/": {
+      "filePath": "tasks/index.tsx"
     }
   }
 }
